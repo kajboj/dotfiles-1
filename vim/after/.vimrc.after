@@ -1,0 +1,105 @@
+if has("gui_running")
+  set guifont=Menlo\ Regular:h14
+
+  " yanking to system wide clipboard
+  set guioptions+=a
+  set guioptions+=A
+
+  " console dialogs instead of popups
+  set guioptions+=c
+endif
+
+nmap <C-n> :set invnumber<CR>
+nmap _e :e <C-r>%<C-f>dT/a
+
+nmap _qs :cd ~/shutl/quote_service<CR>:e .<CR>
+nmap _ap :cd ~/shutl/admin_portal<CR>:e .<CR>
+nmap _au :cd ~/shutl/authentication_service<CR>:e .<CR>
+nmap _bs :cd ~/shutl/booking_service<CR>:e .<CR>
+nmap _ib :cd ~/shutl/integration_build<CR>:e .<CR>
+nmap _cr :cd ~/shutl/chef-repo<CR>:e .<CR>
+
+" Open scratch file
+map <F8> :e ~/tmp/scratch<Return>
+map <F9> :e ~/tmp/scratch2<Return>
+map <F5> :w<Enter>
+
+" Close window
+map <C-c> <C-w>c
+"
+" Moving between windows
+map <C-S-j> <C-w>j
+map <C-S-h> <C-w>h
+map <C-S-k> <C-w>k
+map <C-S-l> <C-w>l
+
+" Resizing windows
+map <PageDown> <C-w>40<lt>
+map <PageUp> <C-w>40>
+map <Home> <C-w>20+
+map <End> <C-w>20-
+
+nmap Y yy
+
+unmap <C-f>
+unmap <C-b>
+
+nmap _e :e %F/lDa
+
+let g:syntastic_ruby_exec      = '~/.rbenv/versions/1.9.3-p125/bin/ruby'
+let g:syntastic_quiet_warnings = 1
+
+call NumbersDisable()
+set number
+
+
+
+
+
+let s:reg = '*'
+
+let s:prefixes = {
+      \"spec.*_spec.rb"       : "be rspec",
+      \"features.*feature"    : "be cucumber"}
+
+function! s:Prefix()
+  let s:filename = expand("%")
+  for s:p in keys(s:prefixes)
+    if s:filename =~ s:p
+      return get(s:prefixes, s:p) . " "
+    endif
+  endfor
+  return ""
+endfunction
+
+function! YankWithPrefix()
+  call setreg(s:reg, s:Prefix() . expand("%"))
+endfunction
+
+function! YankWithPrefixAndLineNumber()
+  call setreg(s:reg, s:Prefix() . expand("%") . ":" . line("."))
+endfunction
+
+map _ys :call YankWithPrefix()<CR>
+map _yS :call YankWithPrefixAndLineNumber()<CR>
+
+
+
+
+
+
+nmap ,ev :e ~/.vimrc.after<CR>
+nmap ,ez :e ~/.zsh.after/aliases_and_stuff.zsh<CR>
+nmap ,ey :cd ~/.yadr<CR>:e .<CR>
+
+nmap ,gs :Gsearch ""<left>
+nmap ,gr :gr ""<left>
+
+set grepprg=ag\ --nogroup\ --nocolor\ --ignore-dir=vendor\ --ignore-dir=log\ --ignore=tags
+
+nmap ,cn :cn<CR>
+nmap ,cp :cp<CR>
+
+" jumping to step definition from cucumber feature (select significant part of
+" the step name first)
+vmap ,st y:gr "0" features/step_definitions
