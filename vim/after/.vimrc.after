@@ -88,8 +88,8 @@ map _yS :call YankWithPrefixAndLineNumber()<CR>
 
 
 
-nmap ,ev :e ~/.vimrc.after<CR>
-nmap ,ez :e ~/.zsh.after/aliases_and_stuff.zsh<CR>
+nmap ,ev :e ~/.yadr/vim/after/.vimrc.after<CR>
+nmap ,ez :e ~/.yadr/zsh/zzzz_my_after.zsh<CR>
 nmap ,ey :cd ~/.yadr<CR>:e .<CR>
 
 nmap ,gs :Gsearch ""<left>
@@ -103,3 +103,6 @@ nmap ,cp :cp<CR>
 " jumping to step definition from cucumber feature (select significant part of
 " the step name first)
 vmap ,st y:gr "0" features/step_definitions
+
+" allow cursor to get to the very top/bottom of the screen
+set scrolloff=0
