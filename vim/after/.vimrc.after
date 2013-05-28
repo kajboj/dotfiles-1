@@ -106,3 +106,5 @@ vmap ,st y:gr "0" features/step_definitions
 
 " allow cursor to get to the very top/bottom of the screen
 set scrolloff=0
+
+command W :w

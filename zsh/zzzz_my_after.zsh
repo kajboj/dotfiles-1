@@ -20,3 +20,25 @@ alias bi='bundle install'
 alias soz='source ~/.zsh.after/aliases_and_stuff.zsh'
 
 set -o emacs
+
+function current_repository() {
+ref=$(git symbolic-ref HEAD 2> /dev/null) || \
+  ref=$(git rev-parse --short HEAD 2> /dev/null) || return
+echo $(git remote -v | cut -d':' -f 2)
+}
+
+function current_branch() {
+ref=$(git symbolic-ref HEAD 2> /dev/null) || \
+  ref=$(git rev-parse --short HEAD 2> /dev/null) || return
+echo ${ref#refs/heads/}
+}
+
+# these aliases take advantage of the previous function
+alias ggpull='git pull origin $(current_branch)'
+compdef ggpull=git
+alias ggpush='git push origin $(current_branch)'
+compdef ggpush=git
+alias ggpnp='git pull origin $(current_branch) && git push origin $(current_branch)'
+compdef ggpnp=git
+
+alias exit='echo "use Ctrl+D instead"'
