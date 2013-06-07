@@ -108,3 +108,6 @@ vmap ,st y:gr "0" features/step_definitions
 set scrolloff=0
 
 command W :w
+
+" align by char
+vmap ,a :Tab//€kb\zs€kl€kl€kl
