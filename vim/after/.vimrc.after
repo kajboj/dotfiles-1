@@ -18,10 +18,12 @@ nmap _au :cd ~/shutl/authentication_service<CR>:e .<CR>
 nmap _bs :cd ~/shutl/booking_service<CR>:e .<CR>
 nmap _ib :cd ~/shutl/integration_build<CR>:e .<CR>
 nmap _cr :cd ~/shutl/chef-repo<CR>:e .<CR>
+nmap _cc :cd ~/shutl/consumer_engine_host<CR>:e .<CR>
 
 " Open scratch file
 map <F8> :e ~/tmp/scratch<Return>
 map <F9> :e ~/tmp/scratch2<Return>
+map <F10> :e ~/bits<Return>
 map <F5> :w<Enter>
 
 " Close window
@@ -102,12 +104,26 @@ nmap ,cp :cp<CR>
 
 " jumping to step definition from cucumber feature (select significant part of
 " the step name first)
-vmap ,st y:gr "0" features/step_definitions
+vmap ,st y:gr "/.*0.*/" features/step_definitions
 
 " allow cursor to get to the very top/bottom of the screen
 set scrolloff=0
 
 command W :w
 
-" align by char
-vmap ,a :Tab//€kb\zs€kl€kl€kl
+" puts debug
+vmap ,d yO"90pa: #{}"0P0v$hs"Iputs llikai debugs ==
+
+" grep for debugger
+nmap ,gd :gr "debugger" app
+" grep for pry
+nmap ,gp :gr "binding.*pry" app
+
+" align =>
+vmap ,a> :Tab /=>jk
+" align =
+vmap ,a= :Tab /=jk
+" align :
+vmap ,a: :Tab /:\zsjk
+" align ,
+vmap ,a, :Tab /,\zsjk
