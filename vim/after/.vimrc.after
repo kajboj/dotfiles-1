@@ -127,3 +127,9 @@ vmap ,a= :Tab /=jk
 vmap ,a: :Tab /:\zsjk
 " align ,
 vmap ,a, :Tab /,\zsjk
+" align {
+vmap ,a{ :Tab /{jk
+" align }
+vmap ,a} :Tab /}jk
+" align )
+vmap ,a) :Tab /)jk

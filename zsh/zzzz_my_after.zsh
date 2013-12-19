@@ -45,10 +45,12 @@ compdef ggpnp=git
 
 alias exit='echo "use Ctrl+D instead"'
 
-alias stag='ruby ~/code/iterm/exec.rb stag'
-alias sand='ruby ~/code/iterm/exec.rb sand'
-alias prod='ruby ~/code/iterm/exec.rb prod'
-alias prod_us='ruby ~/code/iterm/exec.rb prod_us'
+alias stag='ruby ~/code/iterm/lib/exec.rb staging'
+alias sand='ruby ~/code/iterm/lib/exec.rb sandbox'
+alias prod_uk='ruby ~/code/iterm/lib/exec.rb production_uk'
+alias prod_us='ruby ~/code/iterm/lib/exec.rb production_us'
 
 alias ttr='touch tmp/restart.txt'
 alias tpr='touch ~/.pow/restart.txt'
+
+alias subl='/Applications/Sublime\ Text\ 2.app/Contents/SharedSupport/bin/subl'
